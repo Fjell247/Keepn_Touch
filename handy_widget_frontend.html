@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeepnTouch</title>
+</head>
+<body>
+    <h1>KeepnTouch</h1>
+    <ul id="names-list">
+        <!-- Hier werden die Namen angezeigt -->
+    </ul>
+
+    <script>
+        // Beim Laden der Seite die Namen vom Flask-Server anfordern
+        window.onload = function() {
+            fetch("http://127.0.0.1:5000/get_random_names")  // Verwende die lokale IP-Adresse, wenn du es im Netzwerk testen möchtest
+                .then(response => response.json())  // Antwort im JSON-Format
+                .then(data => {
+                    // Holen der <ul>-Liste und Hinzufügen der Namen
+                    const namesList = document.getElementById('names-list');
+                    data.forEach(name => {
+                        const listitem = document.createElement('li');
+                        listitem.textContent = name;
+                        namesList.appendChild(listitem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Fehler beim Abrufen der Namen:', error);
+                });
+        };
+    </script>
+</body>
+</html>
