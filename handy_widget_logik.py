@@ -10,6 +10,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
+
 # Google Drive API-Setup
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 SERVICE_ACCOUNT_FILE = r"C:\Users\fjell\Desktop\Python\Keepn_Touch\Skripte\keepntouch-1a62cb9a0021.json"  # Dein Service Account Key
