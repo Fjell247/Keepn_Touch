@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeepnTouch</title>
+    <title>Handy Widget</title>
+    <link rel="stylesheet" href="handy_widget_style.css">
 </head>
 <body>
-    <h1>KeepnTouch</h1>
+    <h1>Handy Widget</h1>
     <ul id="names-list">
         <!-- Hier werden die Namen angezeigt -->
     </ul>
@@ -14,7 +15,7 @@
     <script>
         // Beim Laden der Seite die Namen vom Flask-Server anfordern
         window.onload = function() {
-            fetch("http://127.0.0.1:5000/get_random_names")  // Verwende die lokale IP-Adresse, wenn du es im Netzwerk testen möchtest
+            fetch("/get_random_names")  // Nutze die relative URL
                 .then(response => response.json())  // Antwort im JSON-Format
                 .then(data => {
                     // Holen der <ul>-Liste und Hinzufügen der Namen
@@ -22,6 +23,7 @@
                     data.forEach(name => {
                         const listitem = document.createElement('li');
                         listitem.textContent = name;
+                        listitem.className = 'name-box';  // CSS-Klasse für die Box hinzufügen
                         namesList.appendChild(listitem);
                     });
                 })
